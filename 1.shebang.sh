@@ -4,3 +4,4 @@
 
 echo hello world
 echo This is the first session of Bash
+echo this is the second statement
