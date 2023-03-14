@@ -13,5 +13,5 @@
 
 #SYNTAX:
 #    echo -e "\ecolorcodem msg to print \e[0m"
- echo -e "\e31m this is red color \e[0m"
+ echo -e "\e[31m this is red color \e[0m"
 
