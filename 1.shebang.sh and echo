@@ -7,4 +7,5 @@ echo This is the first session of Bash
 echo this is the second statement
 echo we know how to run bash scripting
 
-# for name spaces we use  
+echo line1
+echo line2
