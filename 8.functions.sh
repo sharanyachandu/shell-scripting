@@ -14,4 +14,9 @@ sample(){
     echo "This is the sample function to call"
 }
 #THIS IS HOW WE CALL A FUNCTION
-    sample
+    #sample
+
+    test(){
+        echo"Total number of sessions:$(who | wc -l)"
+        echo "Todays date is :$(date + %F)"
+    }
