@@ -12,3 +12,5 @@ echo $b
 #if we are not giving specific value it will not show any difference
 #ex
  echo "value of $d"
+ if we want to give value in linux command we can use emport command
+ #ex export varable="value"(in command line)
