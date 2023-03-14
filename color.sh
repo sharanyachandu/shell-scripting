@@ -16,6 +16,6 @@
 #for background color ex:  echo -e "\e[bckgndclor;forgrndclr msg \e[0m"
  echo -e "\e[31m this is red color \e[0m"
  echo -e "\e[34m this is blue color \e[0m"
- echo -e "\e[41m;34m this is blue color \e[0m"
+ echo -e "\e[41;34m this is blue color \e[0m"
  
 
