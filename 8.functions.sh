@@ -21,3 +21,7 @@ sample(){
         echo "Todays date is: $(date +%F)"
     }
     test
+    #awk is used to display the field dividers
+    #ex:$uptime | awk -F : '{print $1}' -->it prints value of firstcolon,here the field seperator is :
+     #ex:$uptime | awk -F : '{print $NF}' -->it prints the last values
+     #ex::$uptime | awk -F : '{print $NF}' | awk -F , '{print $1}' -->which prints load avarage first value with field seperator,

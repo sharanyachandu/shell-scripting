@@ -10,3 +10,4 @@ echo we know how to run bash scripting
 echo line1
 echo line2
 echo hello world
+#everytime we login alias wont be stored for that we can go into the home i.e.,vim ~/.bash_profile and we should do the changes over their.
