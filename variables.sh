@@ -14,3 +14,4 @@ echo $b
  echo "value of $d"
  if we want to give value in linux command we can use emport command
  #ex export varable="value"(in command line)
+ #NOTE:But this value can be used for one time.i.e,if we restart the server yhis value will not be shown
