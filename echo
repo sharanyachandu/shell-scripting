@@ -1,2 +1,6 @@
 echo line1/nline2
 echo -e "line1\nline2"
+#To do so use escape sequence characters
+#\n -->for next line
+#\t -->for tab space
+echo -e "lineA\n\t\tlineB" 
