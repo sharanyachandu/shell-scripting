@@ -5,3 +5,4 @@ echo -e "today date is ${todaydate}" #this is called hardcoding
 #ex
 todaydate=$(date +%F)
 echo -e "today date is ${todaydate}"
+echo "no of users in the system are:$(who | wc -1)"
