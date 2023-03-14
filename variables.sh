@@ -6,6 +6,6 @@
 #echo "$a"
 a=10
 b=7
-echo${b}
+echo ${b}
 echo "$a"
 echo $b
