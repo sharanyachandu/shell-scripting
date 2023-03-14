@@ -19,8 +19,8 @@ sample(){
     test(){
         echo"Total number of sessions: $(who | wc -l)"
         echo "Todays date is: $(date +%F)"
-        echo "calling test function"
-        test
+        echo "calling sample function"
+        sample
     }
     test
     #In a function we can call another function
