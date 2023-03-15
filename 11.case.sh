@@ -13,7 +13,7 @@ fi
 
 case $ACTION in
 start)
-         echo "starting payment service"
+         echo -e"\e[33m starting payment service \e[0m"
 ;;
 stop)
         echo "stoping payment process"
