@@ -2,7 +2,7 @@
 
 set -e
 #validating whether the executed user is root user or not
-$id=$(id -u)
+id=$(id -u)
 
 if[ "$id" -ne 0 ] ; then
 echo ("execute this as a root user")
