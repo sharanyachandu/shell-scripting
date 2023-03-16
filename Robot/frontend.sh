@@ -1,47 +1,53 @@
-#!bin/bash
+ #!bin/bash
 
-#set -e
-#validating whether the executed user is root user or not
-id=$(id -u)
+set -e
+ID=$(id -u)
+if [ "$ID" -ne 0 ] ; then 
+    echo -e "\e[31m You should execute this script as a root user or with a sudo as prefix \e[0m" 
+    exit 1
+fi 
 
-if["$id" -ne 0] ; then
-    echo ("execute this as a root user")
-fi
-yum install nginx -y
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+# #validating whether the executed user is root user or not
+# id=$(id -u)
 
-cd /usr/share/nginx/html
- rm -rf *
- unzip /tmp/frontend.zip
- mv frontend-main/* .
- mv static/* .
- rm -rf frontend-main README.md
- mv localhost.conf /etc/nginx/default.d/roboshop.conf
-
- systemctl enable nginx
- systemctl start nginx
-
-```
-
-Let's download the HTDOCS content and deploy it under the Nginx path.
-
-```
+# if["$id" -ne 0] ; then
+#     echo ("execute this as a root user")
+# fi
+# yum install nginx -y
 # curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
-```
-
-Deploy in Nginx Default Location.
-
-```
 # cd /usr/share/nginx/html
-# rm -rf *
-# unzip /tmp/frontend.zip
-# mv frontend-main/* .
-# mv static/* .
-# rm -rf frontend-main README.md
-# mv localhost.conf /etc/nginx/default.d/roboshop.conf
+#  rm -rf *
+#  unzip /tmp/frontend.zip
+#  mv frontend-main/* .
+#  mv static/* .
+#  rm -rf frontend-main README.md
+#  mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
-```
+#  systemctl enable nginx
+#  systemctl start nginx
 
-- Finally, restart the service once to effect the changes.
-- Now, you should be able to access the ROBOSHOP e-commerce webpage as shown below
+# ```
+
+# Let's download the HTDOCS content and deploy it under the Nginx path.
+
+# ```
+# # curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+
+# ```
+
+# Deploy in Nginx Default Location.
+
+# ```
+# # cd /usr/share/nginx/html
+# # rm -rf *
+# # unzip /tmp/frontend.zip
+# # mv frontend-main/* .
+# # mv static/* .
+# # rm -rf frontend-main README.md
+# # mv localhost.conf /etc/nginx/default.d/roboshop.conf
+
+# ```
+
+# - Finally, restart the service once to effect the changes.
+# - Now, you should be able to access the ROBOSHOP e-commerce webpage as shown below
