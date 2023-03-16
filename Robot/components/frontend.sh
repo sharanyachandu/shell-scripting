@@ -2,7 +2,7 @@
 
 set -e
     COMPONENT=frontend
-    LOG-FILE="/tmp/frontend.log"
+    LOGFILE="/tmp/frontend.log"
 #validating whether the executed user is root user or not
 
 ID=$(id -u)
@@ -20,7 +20,7 @@ fi
 }
 
 echo  -n "installing nginx" 
-yum install nginx -y  &>> LOG-FILE
+yum install nginx -y  &>> LOGFILE
 stat $?
 
 echo -n "Downloading the $COMPONENT component"
@@ -29,11 +29,11 @@ stat $?
 
 echo -n "performing cleanup of old $COMPONENT component"
 cd /usr/share/nginx/html
- rm -rf *  &>> LOG-FILE
+ rm -rf *  &>> LOGFILE
  stat $?
 
 echo -n "copying the download $COMPONENT content"
- unzip /tmp/$COMPONENT.zip  &>> LOG-FILE
+ unzip /tmp/$COMPONENT.zip  &>> LOGFILE
  stat $?
 
  mv $COMPONENT-main/* .
@@ -43,6 +43,6 @@ echo -n "copying the download $COMPONENT content"
  stat $?
 
 
- systemctl enable nginx &>> LOG-FILE
- systemctl start nginx  &>> LOG-FILE
+ systemctl enable nginx &>> LOGFILE
+ systemctl start nginx  &>> LOGFILE
  stat $?
