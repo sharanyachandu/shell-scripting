@@ -36,13 +36,14 @@ echo -n "copying the download $COMPONENT content"
  unzip /tmp/$COMPONENT.zip  &>> LOGFILE
  stat $?
 
+echo -n "Updating the proxy details in the reverse proxy file :"
  mv $COMPONENT-main/* .
  mv static/* .
  rm -rf $COMPONENT-main README.md
  mv localhost.conf /etc/nginx/default.d/roboshop.conf
  stat $?
 
-
+echo -n "starting nginx"
  systemctl enable nginx &>> LOGFILE
  systemctl start nginx  &>> LOGFILE
  stat $?
