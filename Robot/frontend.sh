@@ -11,7 +11,7 @@ fi
 
 echo "installing nginx" 
 yum install nginx -y  &>>/tmp/frontend.log
-if [ "$?" -ne 0 ] ; then
+if [ "$?" -eq 0 ] ; then
     echo  -e "\e[33m ngnix is succesfully installed \e [0m"
 else
     echo -e "\e[32m ngnix is not installed \e [0m"
