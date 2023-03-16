@@ -1,6 +1,6 @@
 #!bin/bash
 
-set -e
+#set -e
 #validating whether the executed user is root user or not
 id=$(id -u)
 
