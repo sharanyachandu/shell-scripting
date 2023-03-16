@@ -9,7 +9,7 @@ if [ "$ID" -ne 0 ] ; then
     exit 1
 fi 
 
-echo "installing nginx" 
+echo  -n "installing nginx" 
 yum install nginx -y  &>>/tmp/frontend.log
 if [ "$?" -eq 0 ] ; then
     echo  -e "\e[33m ngnix is succesfully installed \e[0m"
