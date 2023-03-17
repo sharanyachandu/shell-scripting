@@ -37,7 +37,7 @@ stat $?
 
 echo "Performing Daemon-reload"
    systemctl daemon-reload &>> LOGFILE
-   systemctl restart $COMPONENT &>> LOGFILE
+   systemctl restart $COMPONENT 
 stat $?
 
 # 1. Setup MongoDB repos.
