@@ -23,12 +23,12 @@ echo -n "downloading $COMPONENT repo"
 stat $?
 
 echo "Installing $COMPONENT :"
-  yum install -y mongodb-org <<& /tmp/$COMPONENT.log
+  yum install -y mongodb-org &>> /tmp/$COMPONENT.log
   stat $?
 
 echo "enable and starting $COMPONENT"
-   systemctl enable mongod <<& /tmp/$COMPONENT.log
-   systemctl start mongod <<& /tmp/$COMPONENT.log
+   systemctl enable mongod &>> /tmp/$COMPONENT.log
+   systemctl start mongod &>> /tmp/$COMPONENT.log
    stat $?
  
 # 1. Setup MongoDB repos.
