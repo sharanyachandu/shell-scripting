@@ -29,7 +29,7 @@ yum install nodejs -y  &>> $LOGFILE
 stat $?
 
 echo -n "creating $USERAPP"
-useradd roboshop  &>> $LOGFILE
+# useradd roboshop  &>> $LOGFILE
 stat $?
 
 echo -n "swithing to roboshop user"
