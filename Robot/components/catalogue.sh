@@ -42,7 +42,7 @@ echo -n "Downloading the $COMPONENT "
  stat $?
 
 echo -n "Extracting the $COMPONENT in the $USERAPP directory"
-unzip -o /tmp/$COMPONENT.zip    &>> $LOGFILE
+unzip -o /tmp/$COMPONENT.zip /home/$USERAPP   &>> $LOGFILE
 stat $?
 
 echo -n "Configuring the permissions :"
