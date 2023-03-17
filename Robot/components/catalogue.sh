@@ -20,9 +20,10 @@ fi
 }
 
 echo -n "downloading $COMPONENT repo"
-  curl -s -o /etc/yum.repos.d/$COMPONENT.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
+#   curl -s -o /etc/yum.repos.d/$COMPONENT.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
 stat $?
-
+ 
 echo -n "Installing NodeJS"
 yum install nodejs -y  &>> $LOGFILE
 stat $?
