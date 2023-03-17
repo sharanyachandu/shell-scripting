@@ -23,7 +23,7 @@ echo -n "downloading $COMPONENT repo"
 stat $?
 
 echo -n "Installing $COMPONENT :"
-  yum install install nodejs -y  &>> $LOGFILE
+  yum install nodejs -y  &>> $LOGFILE
 stat $?
 
 echo -n "creating $USERAPP"
