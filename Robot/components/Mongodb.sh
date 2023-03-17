@@ -46,12 +46,12 @@ cd /tmp
 stat $?
 
 echo -n "extracting the $COMPONENT scheme"
-unzip $COMPONENT.zip &>> LOGFILE
+unzip $COMPONENT.zip    &>> LOGFILE
 stat $?
  
  echo -n "injecting the scheme"
  cd /tmp/$COMPONENT-main
- mongo < catalogue.js &>> LOGFILE
-mongo < users.js &>> LOGFILE
+ mongo < catalogue.js   &>> LOGFILE
+ mongo < users.js       &>> LOGFILE
 stat $?
 
