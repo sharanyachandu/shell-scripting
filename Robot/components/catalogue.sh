@@ -27,20 +27,6 @@ echo -n "Installing $COMPONENT :"
   yum install -y mongodb-org &>> $LOGFILE
 stat $?
 
-echo -n "enable and starting $COMPONENT"
-   systemctl enable mongod &>> $LOGFILE
-   systemctl start mongod &>> $LOGFILE
-stat $?
- 
- echo -n "updating the $COMPONENT visibility"
-  sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-stat $?
-
-echo -n "Performing Daemon-reload"
-   systemctl daemon-reload &>> $LOGFILE
-   systemctl restart mongod
-stat $?
-
 echo -n "downloading $COMPONENT scheme"
  curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/ $COMPONENT/archive/main.zip"
 stat $?
