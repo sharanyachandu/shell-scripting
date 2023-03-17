@@ -31,13 +31,17 @@ stat $?
 echo -n "creating $USERAPP"
 useradd roboshop  &>> $LOGFILE
 stat $?
+
+echo -n "swithing to roboshop user"
+su - $USERAPP
+stat $?
+
  
 echo -n "Downloading the $COMPONENT "
  curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
  stat $?
 
-echo -n "Extracting the $COMPONENT in the $APPUSER directory"
-cd /home/$APPUSER
+echo -n "Extracting the $COMPONENT in the $USERAPP directory"
 unzip -o /tmp/$COMPONENT.zip    &>> $LOGFILE
 stat $?
 # $ mv catalogue-main catalogue
