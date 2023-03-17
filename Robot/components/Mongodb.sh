@@ -50,7 +50,7 @@ unzip $COMPONENT-main    &>> $LOGFILE
 stat $?
  
  echo -n "injecting the scheme"
- cd /tmp/$COMPONENT-main
+ cd $COMPONENT-main
  mongo < catalogue.js   &>> $LOGFILE
  mongo < users.js       &>> $LOGFILE
 stat $?
