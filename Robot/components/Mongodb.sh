@@ -41,15 +41,16 @@ echo -n "Performing Daemon-reload"
 stat $?
 
 echo -n "downloading $COMPONENT scheme"
- curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+cd /tmp
+ curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/ $COMPONENT/archive/main.zip"
 stat $?
 
-echo -n "extracting the scheme"
-unzip $COMPONENT.zip
+echo -n "extracting the $COMPONENT scheme"
+unzip $COMPONENT.zip &>> LOGFILE
 stat $?
  
  echo -n "injecting the scheme"
- cd /tmp/$COMPONEN-main
+ cd /tmp/$COMPONENT-main
  mongo < catalogue.js &>> LOGFILE
 mongo < users.js &>> LOGFILE
 stat $?
