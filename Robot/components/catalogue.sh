@@ -2,7 +2,6 @@
 set -e
     COMPONENT=catalogue
     LOGFILE="/tmp/$COMPONENT.log"
-    APPUSER=roboshop
 
 ID=$(id -u)  #validating whether the executed user is root user or not
 
@@ -24,30 +23,7 @@ echo -n "downloading $COMPONENT repo"
 stat $?
 
 echo -n "Installing $COMPONENT :"
-  yum install -y mongodb-org &>> $LOGFILE
-stat $?
-
-echo -n "downloading $COMPONENT scheme"
- curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/ $COMPONENT/archive/main.zip"
-stat $?
-
-echo -n "extracting the $COMPONENT scheme"
-cd /tmp
-unzip $COMPONENT-main    &>> $LOGFILE
-stat $?
- 
- echo -n "injecting the scheme"
- cd /tmp/$COMPONENT-main
- mongo < catalogue.js   &>> $LOGFILE
- mongo < users.js       &>> $LOGFILE
-stat $?
-
-echo -n "configuring nodejs repo"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
-stat $?
-
-echo -n "installing nodejs"
-yum install nodejs -y  &>> $LOGFILE
+  yum install install nodejs -y  &>> $LOGFILE
 stat $?
 
 echo -n "creating $USERAPP"
@@ -61,6 +37,7 @@ echo -n "Downloading the $COMPONENT "
 echo -n "Extracting the $COMPONENT in the $APPUSER directory"
 cd /home/$APPUSER
 unzip -o /tmp/$COMPONENT.zip    &>> $LOGFILE
+stat $?
 # $ mv catalogue-main catalogue
 # $ cd /home/roboshop/catalogue
 # $ npm install
