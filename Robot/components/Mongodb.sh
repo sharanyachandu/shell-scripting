@@ -23,12 +23,12 @@ echo -n "downloading $COMPONENT repo"
 stat $?
 
 echo -n "Installing $COMPONENT :"
-  yum install -y mongodb-org &>> LOGFILE
+  yum install -y mongodb-org &>> $LOGFILE
 stat $?
 
 echo -n "enable and starting $COMPONENT"
-   systemctl enable mongod &>> LOGFILE
-   systemctl start mongod &>> LOGFILE
+   systemctl enable mongod &>> $LOGFILE
+   systemctl start mongod &>> $LOGFILE
 stat $?
  
  echo -n "updating the $COMPONENT visibility"
@@ -36,7 +36,7 @@ stat $?
 stat $?
 
 echo -n "Performing Daemon-reload"
-   systemctl daemon-reload &>> LOGFILE
+   systemctl daemon-reload &>> $LOGFILE
    systemctl restart mongod
 stat $?
 
@@ -46,12 +46,20 @@ cd /tmp
 stat $?
 
 echo -n "extracting the $COMPONENT scheme"
-unzip $COMPONENT.zip    &>> LOGFILE
+unzip $COMPONENT.zip    &>> $LOGFILE
 stat $?
  
  echo -n "injecting the scheme"
- cd /tmp/$COMPONENT.log
- mongo < catalogue.js   &>> LOGFILE
- mongo < users.js       &>> LOGFILE
+ cd /tmp/$COMPONENT-main
+ mongo < catalogue.js   &>> $LOGFILE
+ mongo < users.js       &>> $LOGFILE
 stat $?
+
+# curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+
+# cd /tmp
+# unzip mongodb.zip
+# cd mongodb-main
+# mongo < catalogue.js
+# mongo < users.js
 
