@@ -41,7 +41,7 @@ echo -n "Performing Daemon-reload"
 stat $?
 
 echo -n "downloading $COMPONENT scheme"
- curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/ $COMPONENT/archive/main.zip"
+ curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 stat $?
 
 echo -n "extracting the $COMPONENT scheme"
