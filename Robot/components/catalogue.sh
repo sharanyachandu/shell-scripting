@@ -2,6 +2,7 @@
 set -e
     COMPONENT=catalogue
     LOGFILE="/tmp/$COMPONENT.log"
+    USERAPP=roboshop
 
 ID=$(id -u)  #validating whether the executed user is root user or not
 
