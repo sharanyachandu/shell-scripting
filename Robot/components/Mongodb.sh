@@ -46,7 +46,7 @@ stat $?
 
 echo -n "extracting the $COMPONENT scheme"
 cd /tmp
-unzip $COMPONENT-main    &>> $LOGFILE
+unzip $COMPONENT.zip    &>> $LOGFILE
 stat $?
  
  echo -n "injecting the scheme"
