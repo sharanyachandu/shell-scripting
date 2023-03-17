@@ -22,8 +22,8 @@ echo -n "downloading $COMPONENT repo"
   curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
 stat $?
 
-echo -n "Installing $COMPONENT :"
-  yum install nodejs -y  &>> $LOGFILE
+echo -n "Installing NodeJS"
+yum install nodejs -y  &>> $LOGFILE
 stat $?
 
 echo -n "creating $USERAPP"
