@@ -33,7 +33,7 @@ echo -n "creating $USERAPP"
 stat $?
 
 echo -n "swithing to roboshop user"
-su - $USERAPP
+#su - $USERAPP
 stat $?
 
  
@@ -44,9 +44,17 @@ echo -n "Downloading the $COMPONENT "
 echo -n "Extracting the $COMPONENT in the $USERAPP directory"
 unzip -o /tmp/$COMPONENT.zip    &>> $LOGFILE
 stat $?
-# $ mv catalogue-main catalogue
-# $ cd /home/roboshop/catalogue
-# $ npm install
+
+echo -n "Configuring the permissions :"
+mv /home/$USERAPP/$COMPONENT-main /home/$USERAPP/$COMPONENT
+mv catalogue-main catalogue
+chown -R $USERAPP:$USERAPP /home/$USERAPP/$COMPONENT
+stat $?
+
+echo -n "Installing the $COMPONENT Application :"
+    cd /home/$USERAPP/$COMPONENT/ 
+    npm install &>> $LOGFILE
+    stat $?
 
 
 
