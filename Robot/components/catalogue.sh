@@ -20,7 +20,7 @@ fi
 }
 
 echo -n "downloading $COMPONENT repo"
-  curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
+  curl -s -o /etc/yum.repos.d/$COMPONENT.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
 stat $?
 
 echo -n "Installing NodeJS"
