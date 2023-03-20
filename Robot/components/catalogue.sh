@@ -33,7 +33,7 @@ stat $?
 # stat $?
 
 echo -n "swithing to roboshop user"
-#su - $USERAPP
+su - $USERAPP
 stat $?
 
  
