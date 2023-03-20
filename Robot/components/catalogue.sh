@@ -32,9 +32,9 @@ stat $?
 # useradd roboshop  &>> $LOGFILE
 # stat $?
 
-echo -n "swithing to roboshop user"
-su - $USERAPP
-stat $?
+# echo -n "swithing to roboshop user"
+# su - $USERAPP
+# stat $?
 
  
 echo -n "Downloading the $COMPONENT "
