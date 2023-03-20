@@ -1,4 +1,7 @@
+#!bin/bash
+
 LOGFILE="/tmp/$COMPONENT.log"
+COMPONENT=catalogue
 APPUSER=roboshop
 
 # Validting whether the executed user is a root user or not 
