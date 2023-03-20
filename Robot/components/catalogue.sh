@@ -24,17 +24,17 @@ echo -n "downloading $COMPONENT repo"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
 stat $?
  
-# echo -n "Installing NodeJS"
-# yum install nodejs -y  &>> $LOGFILE
-# stat $?
+echo -n "Installing NodeJS"
+yum install nodejs -y  &>> $LOGFILE
+stat $?
 
-# # echo -n "creating $USERAPP"
-# # useradd roboshop  &>> $LOGFILE
-# stat $?
+# echo -n "creating $USERAPP"
+# useradd roboshop  &>> $LOGFILE
+stat $?
 
-# echo -n "swithing to roboshop user"
-# #su - $USERAPP
-# stat $?
+echo -n "swithing to roboshop user"
+#su - $USERAPP
+stat $?
 
  
 echo -n "Downloading the $COMPONENT "
