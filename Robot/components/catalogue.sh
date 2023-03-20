@@ -1,59 +1,69 @@
-# !bin/bash
-set -e
-    COMPONENT=catalogue
-    LOGFILE="/tmp/$COMPONENT.log"
-    USERAPP=roboshop
+#!bin/bash
 
-ID=$(id -u)  #validating whether the executed user is root user or not
+LOGFILE="/tmp/$COMPONENT.log"
+COMPONENT=catalogue
+APPUSER=roboshop
+
+# Validting whether the executed user is a root user or not 
+ID=$(id -u)
 
 if [ "$ID" -ne 0 ] ; then 
     echo -e "\e[31m You should execute this script as a root user or with a sudo as prefix \e[0m" 
     exit 1
 fi 
 
-stat(){
-if [ "$?" -eq 0 ] ; then
-    echo  -e "\e[33m sucess \e[0m"
-else
-    echo -e "\e[32m Failure \e[0m"
-fi
+
+stat() {
+    if [ $1 -eq 0 ] ; then 
+        echo -e "\e[32m Success \e[0m"
+    else 
+        echo -e "\e[31m Failure \e[0m"
+        exit 2
+    fi 
 }
 
-echo -n "downloading $COMPONENT repo"
-#   curl -s -o /etc/yum.repos.d/$COMPONENT.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
-curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
-stat $?
- 
-echo -n "Installing NodeJS"
-yum install nodejs -y  &>> $LOGFILE
-stat $?
+    id $APPUSER  &>> $LOGFILE
+    if [ $? -ne 0 ] ; then 
+        echo -n "Creating the Application User Account :" 
+        useradd roboshop &>> $LOGFILE
+        stat $? 
+    fi 
 
-# echo -n "creating $USERAPP"
-# useradd roboshop  &>> $LOGFILE
-# stat $?
 
-# echo -n "swithing to roboshop user"
-# su - $USERAPP
-# stat $?
 
- 
-echo -n "Downloading the $COMPONENT "
- curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
- stat $?
+    echo -n "Downloading the $COMPONENT component :"
+    curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
+    stat $? 
 
-echo -n "Extracting the $COMPONENT in the $USERAPP directory"
-unzip -o /tmp/$COMPONENT.zip /home/$USERAPP/   &>> $LOGFILE
-stat $?
+    echo -n "Extracting the $COMPONENT in the $APPUSER directory"
+    cd /home/$APPUSER 
+    rm -rf /home/$APPUSER/$COMPONENT &>> $LOGFILE
+    unzip -o /tmp/$COMPONENT.zip  &>> $LOGFILE
+    stat $? 
 
-echo -n "Configuring the permissions :"
-mv /home/$USERAPP/$COMPONENT-main /home/$USERAPP/$COMPONENT
-mv catalogue-main catalogue
-chown -R $USERAPP:$USERAPP /home/$USERAPP/$COMPONENT
-stat $?
+    echo -n "Configuring the permissions :"
+    mv /home/$APPUSER/$COMPONENT-main /home/$APPUSER/$COMPONENT
+    chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
+    stat $?
 
-echo -n "Installing the $COMPONENT Application :"
-    cd /home/$USERAPP/$COMPONENT/ 
+
+
+    echo -n "Installing the $COMPONENT Application :"
+    cd /home/$APPUSER/$COMPONENT/ 
     npm install &>> $LOGFILE
+    stat $? 
+
+
+
+    echo -n "Updating the systemd file with DB Details :"
+    sed -i -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/'  -e  's/CARTHOST/cart.roboshop.internal/' -e  's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service
+    mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+    stat $? 
+
+    echo -n "Starting the $COMPONENT service : "
+    systemctl daemon-reload &>> $LOGFILE
+    systemctl enable $COMPONENT &>> $LOGFILE
+    systemctl restart $COMPONENT &>> $LOGFILE
     stat $?
 
 
