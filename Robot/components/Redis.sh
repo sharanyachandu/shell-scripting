@@ -17,16 +17,16 @@ else
 fi
 }
 
-echo "installing $COMPONENT repo"   &>> $LOGFILE
+echo -n "installing $COMPONENT repo"   &>> $LOGFILE
 curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo
 stat $?
-echo "installing $COMPONENT"   &>> $LOGFILE
+echo -n "installing $COMPONENT"   &>> $LOGFILE
 yum install redis-6.2.11 -y 
 stat $?
 echo -n "updating the $COMPONENT visibility"
 sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf
 stat $?
-echo "enabling and startin the $COMPONENT"
+echo -n "enabling and startin the $COMPONENT"
 systemctl enable redis  &>> $LOGFILE
 systemctl start redis   &>> $LOGFILE
 stat $?
