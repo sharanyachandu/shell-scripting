@@ -27,8 +27,10 @@ stat() {
         useradd roboshop &>> $LOGFILE
         stat $? 
     fi 
-
-
+echo "installing nodejs"
+ curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+ yum install nodejs -y 
+ stat $?
 
     echo -n "Downloading the $COMPONENT component :"
     curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
