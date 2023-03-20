@@ -1,7 +1,7 @@
 #!bin/bash
 
 LOGFILE="/tmp/$COMPONENT.log"
-COMPONENT=catalogue
+COMPONENT=user
 APPUSER=roboshop
 
 # Validting whether the executed user is a root user or not 
@@ -45,7 +45,6 @@ stat() {
     mv /home/$APPUSER/$COMPONENT-main /home/$APPUSER/$COMPONENT
     chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
     stat $?
-
 
 
     echo -n "Installing the $COMPONENT Application :"
