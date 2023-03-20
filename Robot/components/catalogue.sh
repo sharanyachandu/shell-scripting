@@ -30,7 +30,7 @@ stat $?
 
 # echo -n "creating $USERAPP"
 # useradd roboshop  &>> $LOGFILE
-stat $?
+# stat $?
 
 echo -n "swithing to roboshop user"
 #su - $USERAPP
