@@ -1,7 +1,6 @@
 #!bin/bash
-
-LOGFILE="/tmp/$COMPONENT.log"
 COMPONENT=user
+LOGFILE="/tmp/$COMPONENT.log"
 APPUSER=roboshop
 
 # Validting whether the executed user is a root user or not 
@@ -47,10 +46,12 @@ stat() {
     stat $?
 
 
-    echo -n "Installing the $COMPONENT Application :"
+    echo -n "Installing the $COMPONENT Application :"          
     cd /home/$APPUSER/$COMPONENT/ 
     npm install &>> $LOGFILE
     stat $? 
+
+    
 
 
 
